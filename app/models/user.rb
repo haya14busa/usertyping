@@ -24,8 +24,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.find(query)
+    self.find_by_username(query) || super(query)
+  end
+
   def to_param
-    username
+    "#{self.username}"
   end
 end
 
