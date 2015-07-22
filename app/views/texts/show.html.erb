@@ -21,7 +21,7 @@
 </p>
 
 
-<% if user_signed_in? %>
+<% if user_signed_in? and @user == current_user %>
   <%= link_to 'Edit', edit_user_collection_text_path(@user, @collection, @text) %> |
 <% end %>
 

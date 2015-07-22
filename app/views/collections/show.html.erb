@@ -22,7 +22,7 @@
         <th>Title</th>
         <th>Body</th>
         <th>Description</th>
-        <% if user_signed_in? %>
+        <% if user_signed_in? and @user == current_user %>
           <th colspan="2"></th>
         <% end %>
       </tr>
@@ -34,7 +34,7 @@
           <td><%= link_to text.title, user_collection_text_path(@user, @collection, text) %></td>
           <td><%= text.body %></td>
           <td><%= text.description %></td>
-          <% if user_signed_in? %>
+          <% if user_signed_in? and @user == current_user %>
             <td><%= link_to 'Edit', edit_user_collection_text_path(@user, @collection, text) %></td>
             <td><%= link_to 'Destroy', user_collection_text_path(@user, @collection, text), method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
@@ -45,7 +45,7 @@
 <% end %>
 
 
-<% if user_signed_in? %>
+<% if user_signed_in? and @user == current_user %>
   <h1>New Text</h1>
   <%= render 'texts/form' %>
 
