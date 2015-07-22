@@ -8,20 +8,26 @@
       <td>Title</td>
       <td>Description</td>
       <td>created at</td>
-      <th colspan="2"></th>
+
+      <% if user_signed_in? %>
+        <th colspan="2"></th>
+      <% end %>
     </tr>
   <% @collections.each do |collection| %>
     <tr>
       <td><%= link_to collection.title, user_collection_path(collection.user, collection) %></td>
       <td><%= collection.description %></td>
       <td><%= collection.created_at %></td>
-      <td><%= link_to 'Edit', edit_user_collection_path(collection.user, collection) %></td>
-      <td><%= link_to 'Destroy', user_collection_path(collection.user, collection), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% if user_signed_in? %>
+        <td><%= link_to 'Edit', edit_user_collection_path(collection.user, collection) %></td>
+        <td><%= link_to 'Destroy', user_collection_path(collection.user, collection), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
     </tr>
   <% end %>
   </table>
 <% end %>
 
-<h1>New Collection</h1>
-
-<%= render 'collections/form' %>
+<% if user_signed_in? %>
+  <h1>New Collection</h1>
+  <%= render 'collections/form' %>
+<% end %>

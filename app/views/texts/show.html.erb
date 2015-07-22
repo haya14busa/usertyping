@@ -20,5 +20,9 @@
   <%= @text.collection %>
 </p>
 
-<%= link_to 'Edit', edit_user_collection_text_path(@user, @collection, @text) %> |
+
+<% if user_signed_in? %>
+  <%= link_to 'Edit', edit_user_collection_text_path(@user, @collection, @text) %> |
+<% end %>
+
 <%= link_to 'Back', user_collection_path(@user, @collection) %>
