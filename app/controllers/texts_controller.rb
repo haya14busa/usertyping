@@ -1,6 +1,7 @@
 class TextsController < ApplicationController
   before_action :set_text, only: [:show, :edit, :update, :destroy]
   before_action :set_user, :set_collection
+  before_action :authenticate_user, only: [:create, :edit, :update, :destroy]
 
   # GET /texts
   # GET /texts.json
@@ -74,5 +75,12 @@ class TextsController < ApplicationController
 
     def set_user
       @user = User.find(params[:user_id])
+    end
+
+    def authenticate_user
+      @user = User.find(params[:user_id])
+      if @user != current_user
+        redirect_to user_collections_url, notice: 'You have no permission'
+      end
     end
 end
