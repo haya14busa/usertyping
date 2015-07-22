@@ -1,18 +1,8 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @collection.title %>
-</p>
+<h1><%= @user.username %> / <%= @collection.title %></h1>
 
 <p>
   <strong>Description:</strong>
   <%= @collection.description %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @collection.user %>
 </p>
 
 <% if @texts.present? %>
@@ -46,7 +36,7 @@
 
 
 <% if user_signed_in? and @user == current_user %>
-  <h1>New Text</h1>
+  <h2>New Text</h2>
   <%= render 'texts/form' %>
 
   <%= link_to 'Edit', edit_user_collection_path(@collection.user, @collection) %> |

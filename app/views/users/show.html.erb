@@ -1,8 +1,7 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1><%= @user.username %>'s page</h1>
 
 <% if @collections.present? %>
-  <h2><%= @user.username %>'s collections</h2>
+  <h2>collections</h2>
   <table cellspacing="0">
     <tr>
       <td>Title</td>
@@ -28,6 +27,6 @@
 <% end %>
 
 <% if user_signed_in? and @user == current_user %>
-  <h1>New Collection</h1>
+  <h2>New Collection</h2>
   <%= render 'collections/form' %>
 <% end %>
