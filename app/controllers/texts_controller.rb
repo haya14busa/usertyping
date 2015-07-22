@@ -52,7 +52,7 @@ class TextsController < ApplicationController
   def destroy
     @text.destroy
     respond_to do |format|
-      format.html { redirect_to user_collection_texts_url, notice: 'Text was successfully destroyed.' }
+      format.html { redirect_to user_collection_url(@user, @collection), notice: 'Text was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
