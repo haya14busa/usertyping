@@ -44,6 +44,6 @@ class TextsControllerTest < ActionController::TestCase
       delete :destroy, id: @text
     end
 
-    assert_redirected_to user_collection_texts_path
+    assert_redirected_to user_collection_path(@user, @collection)
   end
 end
