@@ -6,6 +6,7 @@ class Collection < ActiveRecord::Base
   validates :title,
     :presence => true,
     :uniqueness => {
+      :scope => [:user_id],
       :case_sensitive => false
     },
     :exclusion => {

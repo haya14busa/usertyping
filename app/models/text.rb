@@ -4,6 +4,7 @@ class Text < ActiveRecord::Base
   validates :title,
     :presence => true,
     :uniqueness => {
+      :scope => [:collection_id],
       :case_sensitive => false
     }
 
