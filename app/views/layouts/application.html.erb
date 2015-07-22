@@ -11,6 +11,12 @@
   <div>
     <nav style='float: right;'>
       <ul style='margin-top: 0; list-style: none;'>
+          <li style='display: inline-block; margin-left: 10px'>
+            <%= form_tag collections_path, :method => 'get' do %>
+              <%= text_field_tag :query, params[:query] %>
+              <%= submit_tag 'Search', :name => nil %>
+            <% end %>
+          </li>
         <% if user_signed_in? %>
           <li style='display: inline-block; margin-left: 10px'><%= link_to current_user.username, user_path(current_user) %></li>
           <li style='display: inline-block; margin-left: 10px'><%= link_to "Settings", edit_user_registration_path, :class => "navbar-link" %></li>

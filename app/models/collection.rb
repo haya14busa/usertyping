@@ -21,4 +21,12 @@ class Collection < ActiveRecord::Base
   def to_param
     "#{self.title}"
   end
+
+  def self.search(query)
+    if query
+      Collection.where(['title LIKE ?', "%#{query}%"])
+    else
+      Collection.all
+    end
+  end
 end
