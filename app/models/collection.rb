@@ -24,7 +24,7 @@ class Collection < ActiveRecord::Base
 
   def self.search(query)
     if query
-      Collection.where(['title LIKE ?', "%#{query}%"])
+      Collection.where(['title LIKE ? or description LIKE ?', "%#{query}%", "%#{query}%"])
     else
       Collection.all
     end
