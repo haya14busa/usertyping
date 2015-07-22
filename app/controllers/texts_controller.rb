@@ -1,5 +1,6 @@
 class TextsController < ApplicationController
   before_action :set_text, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, :set_collection
 
   # GET /texts
   # GET /texts.json
@@ -15,6 +16,7 @@ class TextsController < ApplicationController
   # GET /texts/new
   def new
     @text = Text.new
+    @text.collection = @collection
   end
 
   # GET /texts/1/edit
@@ -28,7 +30,7 @@ class TextsController < ApplicationController
 
     respond_to do |format|
       if @text.save
-        format.html { redirect_to @text, notice: 'Text was successfully created.' }
+        format.html { redirect_to user_collection_text_path(@user, @collection, @text), notice: 'Text was successfully created.' }
         format.json { render :show, status: :created, location: @text }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class TextsController < ApplicationController
   def update
     respond_to do |format|
       if @text.update(text_params)
-        format.html { redirect_to @text, notice: 'Text was successfully updated.' }
+        format.html { redirect_to user_collection_text_path(@user, @collection, @text), notice: 'Text was successfully updated.' }
         format.json { render :show, status: :ok, location: @text }
       else
         format.html { render :edit }
@@ -56,7 +58,7 @@ class TextsController < ApplicationController
   def destroy
     @text.destroy
     respond_to do |format|
-      format.html { redirect_to texts_url, notice: 'Text was successfully destroyed.' }
+      format.html { redirect_to user_collection_texts_url, notice: 'Text was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -70,5 +72,13 @@ class TextsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def text_params
       params.require(:text).permit(:title, :body, :description, :collection_id)
+    end
+
+    def set_collection
+      @collection = Collection.find(params[:collection_id])
+    end
+
+    def set_user
+      @user = User.find(params[:user_id])
     end
 end
