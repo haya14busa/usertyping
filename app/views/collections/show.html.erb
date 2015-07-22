@@ -15,5 +15,31 @@
   <%= @collection.user %>
 </p>
 
+<% if @texts.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Body</th>
+        <th>Description</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @texts.each do |text| %>
+        <tr>
+          <td><%= text.title %></td>
+          <td><%= text.body %></td>
+          <td><%= text.description %></td>
+          <td><%= link_to 'Show', user_collection_text_path(@user, @collection, text) %></td>
+          <td><%= link_to 'Edit', edit_user_collection_text_path(@user, @collection, text) %></td>
+          <td><%= link_to 'Destroy', user_collection_text_path(@user, @collection, text), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
 <%= link_to 'Edit', edit_user_collection_path(@collection.user, @collection) %> |
 <%= link_to 'Back', user_collections_path %>
