@@ -21,7 +21,11 @@
 
 <p>
   <ul>
-    <li>The number of collections: <span style='font-size: 200%;'><%= @n_of_collections =%></span></li>
-    <li>The number of users: <span style='font-size: 200%;'><%= @n_of_users =%></span></li>
+    <% if @n_of_collections.present? %>
+      <li>The number of collections: <span style='font-size: 200%;'><%= @n_of_collections =%></span></li>
+    <% end %>
+    <% if @n_of_users.present? %>
+      <li>The number of users: <span style='font-size: 200%;'><%= @n_of_users =%></span></li>
+    <% end %>
   </ul>
 </p>
