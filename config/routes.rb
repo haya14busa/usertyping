@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  resources :texts
-  resources :collections
+  get 'users/show'
+
   devise_for :users
+  # use `resources` instead of `get` and `scope` to nest models easily
+  resources :users, :only => [:show], :path => 'u' do
+    resources :collections do
+      resources :texts
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

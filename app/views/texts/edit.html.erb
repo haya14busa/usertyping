@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @text %> |
-<%= link_to 'Back', texts_path %>
+<%= link_to 'Show', user_collection_text_path(@user, @collection, @text) %> |
+<%= link_to 'Back', user_collection_texts_path %>

@@ -21,7 +21,7 @@ class TextsControllerTest < ActionController::TestCase
       post :create, text: { body: @text.body, collection_id: @text.collection_id, description: @text.description, title: @text.title }
     end
 
-    assert_redirected_to text_path(assigns(:text))
+    assert_redirected_to user_collection_text_path(assigns(:text))
   end
 
   test "should show text" do
@@ -36,7 +36,7 @@ class TextsControllerTest < ActionController::TestCase
 
   test "should update text" do
     patch :update, id: @text, text: { body: @text.body, collection_id: @text.collection_id, description: @text.description, title: @text.title }
-    assert_redirected_to text_path(assigns(:text))
+    assert_redirected_to user_collection_text_path(assigns(:text))
   end
 
   test "should destroy text" do
@@ -44,6 +44,6 @@ class TextsControllerTest < ActionController::TestCase
       delete :destroy, id: @text
     end
 
-    assert_redirected_to texts_path
+    assert_redirected_to user_collection_texts_path
   end
 end
