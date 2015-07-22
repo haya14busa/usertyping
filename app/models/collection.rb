@@ -9,6 +9,7 @@ class Collection < ActiveRecord::Base
       :case_sensitive => false
     },
     :exclusion => {
+      # Now, it doesn't use `new` by system but keep it reserved for future
       :in => %w(new),
       :message => "You cannot use %{value} because it's a reserved word"
     }

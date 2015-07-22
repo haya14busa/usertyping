@@ -3,6 +3,9 @@ class UsersController < ApplicationController
 
   def show
     @collections = @user.collections
+    # To create collection
+    @collection = Collection.new
+    @collection.user = @user
   end
 
   private
