@@ -5,7 +5,9 @@
   <%= @collection.description %>
 </p>
 
-<% if @texts.present? %>
+<% if not @texts.present? %>
+  No texts registered in this collection
+<% else %>
   <table>
     <thead>
       <tr>
