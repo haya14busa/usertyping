@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   # use `resources` instead of `get` and `scope` to nest models easily
   resources :users, :only => [:show], :path => 'u' do
-    resources :collections do
+    resources :collections, :path => '/' do
       resources :texts
     end
   end

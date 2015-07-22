@@ -7,6 +7,10 @@ class Collection < ActiveRecord::Base
     :presence => true,
     :uniqueness => {
       :case_sensitive => false
+    },
+    :exclusion => {
+      :in => %w(new),
+      :message => "You cannot use %{value} because it's a reserved word"
     }
 
   def self.find(query)
