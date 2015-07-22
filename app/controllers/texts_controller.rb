@@ -13,12 +13,6 @@ class TextsController < ApplicationController
   def show
   end
 
-  # GET /texts/new
-  def new
-    @text = Text.new
-    @text.collection = @collection
-  end
-
   # GET /texts/1/edit
   def edit
   end
@@ -30,7 +24,7 @@ class TextsController < ApplicationController
 
     respond_to do |format|
       if @text.save
-        format.html { redirect_to user_collection_text_path(@user, @collection, @text), notice: 'Text was successfully created.' }
+        format.html { redirect_to user_collection_path(@user, @collection), notice: 'Text was successfully created.' }
         format.json { render :show, status: :created, location: @text }
       else
         format.html { render :new }

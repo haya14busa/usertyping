@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # use `resources` instead of `get` and `scope` to nest models easily
   resources :users, :only => [:show], :path => 'u' do
     resources :collections, :except => [:index, :new], :path => '/' do
-      resources :texts
+      resources :texts, :except => [:index, :new]
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

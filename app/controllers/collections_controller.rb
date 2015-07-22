@@ -12,6 +12,9 @@ class CollectionsController < ApplicationController
   # GET /collections/1.json
   def show
     @texts = @collection.texts
+    # To create texts
+    @text = Text.new
+    @text.collection = @collection
   end
 
   # GET /collections/1/edit
