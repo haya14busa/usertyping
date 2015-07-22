@@ -1,4 +1,20 @@
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
 
-Hi, <%= @user.username %>
+<% if @collections.present? %>
+  <h2><%= @user.username %>'s collections</h2>
+  <table cellspacing="0">
+    <tr>
+      <td>Title</td>
+      <td>Description</td>
+      <td>created at</td>
+    </tr>
+  <% @collections.each do |collection| %>
+    <tr>
+      <td><%= link_to collection.title, user_collection_path(collection.user, collection) %></td>
+      <td><%= collection.description %></td>
+      <td><%= collection.created_at %></td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>
