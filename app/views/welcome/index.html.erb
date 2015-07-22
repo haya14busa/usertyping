@@ -1,5 +1,5 @@
-<% if @collections.present? %>
-  <h2>Newest Collections</h2>
+<% if @newest_collections.present? %>
+  <h2>Newest newest_collections</h2>
 
   <table cellspacing="0">
   <tr>
@@ -7,7 +7,7 @@
     <td>Description</td>
     <td>created at</td>
   </tr>
-  <% @collections.each do |collection| %>
+  <% @newest_collections.each do |collection| %>
     <tr>
       <td><%= link_to collection.title, user_collection_path(collection.user, collection) %></td>
       <td><%= collection.description %></td>

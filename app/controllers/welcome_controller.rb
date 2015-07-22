@@ -6,6 +6,6 @@ class WelcomeController < ApplicationController
 
   private
     def set_newest_collections
-      @collections = Collection.order("created_at DESC").limit(10)
+      @newest_collections = Collection.order("created_at DESC").limit(10)
     end
 end
