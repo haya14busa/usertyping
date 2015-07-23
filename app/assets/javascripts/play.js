@@ -4,14 +4,13 @@
     console.log('play!');
     var start_button = document.querySelector('#game-start-button');
     // debugger;
-    start_button.onclick = function(e) { 
+    start_button.onclick = function(e) {
       console.log('clicked');
       start_game(start_button);
     };
     // debugger;
   }
 
-  
   function start_game(start_button) {
     var gamearea = document.querySelector('#game-area');
     showDom(gamearea);
@@ -25,7 +24,7 @@
     var len = texts.length;
 
     function updateText(i) {
-      if (i >= len - 1) {
+      if (i > len - 1) {
         end_game();
       } else {
         var text = texts[i];

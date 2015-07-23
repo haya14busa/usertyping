@@ -1,5 +1,10 @@
 <h2><%= @user.username %> / <%= @collection.title %></h2>
 
+
+<p>
+  <%= link_to 'Play!', play_user_collection_path(@user, @collection), :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' %>
+</p>
+
 <p>
   <strong>Description:</strong>
   <%= @collection.description %>

@@ -1,5 +1,5 @@
 class CollectionsController < ApplicationController
-  before_action :set_collection, only: [:show, :edit, :update, :destroy]
+  before_action :set_collection, only: [:show, :edit, :update, :destroy, :play]
   before_action :set_user, except: [:index]
   before_action :authenticate_user, only: [:create, :edit, :update, :destroy]
 
