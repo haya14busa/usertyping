@@ -16,7 +16,7 @@
     <header id="utype-header" class="mdl-layout__header mdl-layout__header">
       <div class="mdl-layout__header-row">
         <!-- Title -->
-        <span id='utype-title' class="mdl-layout-title">
+        <span class="utype-title mdl-layout-title">
           <%= link_to 'Usertyping', root_path %>
         </span>
         <!-- Add spacer, to align navigation to the right -->
@@ -45,7 +45,9 @@
       </div>
     </header>
     <div class="mdl-layout__drawer">
-      <span class="mdl-layout-title">Title</span>
+      <span class="utype-title mdl-layout-title">
+        <%= link_to 'Usertyping', root_path %>
+      </span>
       <nav class="mdl-navigation">
         <% if user_signed_in? %>
           <%= link_to "Signed in as #{current_user.username}", user_path(current_user), :class => 'mdl-navigation__link' %>
@@ -53,10 +55,8 @@
           <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => "mdl-navigation__link" %>
         <% else %>
           <%= link_to "Sign up", new_user_registration_path, :class => 'mdl-navigation__link' %>
-          <%= link_to "Login", new_user_session_path, :class => 'navbar-mdl-navigation__linklink' %>
+          <%= link_to "Login", new_user_session_path, :class => 'mdl-navigation__link' %>
         <% end %>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
       </nav>
     </div>
     <main class="mdl-layout__content">
