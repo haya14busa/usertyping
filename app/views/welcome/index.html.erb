@@ -3,12 +3,14 @@
 
   <table cellspacing="0">
   <tr>
+    <td>User</td>
     <td>Title</td>
     <td>Description</td>
     <td>created at</td>
   </tr>
   <% @newest_collections.each do |collection| %>
     <tr>
+      <td><%= link_to collection.user.username, user_path(collection.user) %></td>
       <td><%= link_to collection.title, user_collection_path(collection.user, collection) %></td>
       <td><%= collection.description %></td>
       <td><%= collection.created_at %></td>
