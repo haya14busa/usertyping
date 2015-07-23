@@ -30,3 +30,8 @@ main {
 .utype-title a {
   text-decoration: none;
 }
+
+.utype-main {
+  border-radius: 2px;
+  padding: 30px 56px 80px;
+}
