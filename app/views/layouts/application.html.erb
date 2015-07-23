@@ -2,43 +2,102 @@
 <html>
 <head>
   <title>Usertyping</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.light_blue-light_green.min.css" />
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-  <div>
-    <nav style='float: right;'>
-      <ul style='margin-top: 0; list-style: none;'>
-          <li style='display: inline-block; margin-left: 10px'>
-            <%= form_tag collections_path, :method => 'get' do %>
-              <%= text_field_tag :query, params[:query] %>
-              <%= submit_tag 'Search', :name => nil %>
+  <div class="mdl-layout mdl-js-layout">
+    <header id="utype-header" class="mdl-layout__header mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="utype-title mdl-layout-title">
+          <%= link_to root_path do %>
+            <i class="material-icons">keyboard</i> Usertyping
+          <% end %>
+        </span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation -->
+        <nav class="mdl-navigation">
+          <% if user_signed_in? %>
+            <%#= link_to sanitize('<i class="material-icons">account_circle</i>'), user_path(current_user), :class => 'mdl-navigation__link'%>
+            <%= link_to user_path(current_user), :class => 'mdl-navigation__link' do %>
+              <i class="material-icons">account_circle</i> <%= current_user.username %>
             <% end %>
-          </li>
-        <% if user_signed_in? %>
-          <li style='display: inline-block; margin-left: 10px'><%= link_to current_user.username, user_path(current_user) %></li>
-          <li style='display: inline-block; margin-left: 10px'><%= link_to "Settings", edit_user_registration_path, :class => "navbar-link" %></li>
-          <li style='display: inline-block; margin-left: 10px'><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => "navbar-link" %></li>
-        <% else %>
-          <li style='display: inline-block; margin-left: 10px'><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link' %></li>
-          <li style='display: inline-block; margin-left: 10px'><%= link_to "Login", new_user_session_path, :class => 'navbar-link' %></li>
+            <%= link_to edit_user_registration_path, :class => 'mdl-navigation__link' do %>
+              <i class="material-icons">settings</i> Settings
+            <% end %>
+            <%= link_to destroy_user_session_path, method: :delete, :class => "mdl-navigation__link" do %>
+              <i class="material-icons">exit_to_app</i> Logout
+            <% end %>
+          <% else %>
+            <%= link_to new_user_registration_path, :class => 'mdl-navigation__link' do %>
+              <i class="material-icons">person_add</i> Sign up
+            <% end %>
+            <%= link_to new_user_session_path, :class => 'mdl-navigation__link' do %>
+              <i class="material-icons">input</i> Login
+            <% end %>
+          <% end %>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--align-right">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <%= form_tag collections_path, :method => 'get', :class => 'mdl-navigation__link mdl-textfield mdl-js-textfield' do %>
+                <%= text_field_tag :query, params[:query], :class => 'mdl-textfield__input', :id => 'fixed-header-drawer-exp', :placeholder => 'Search collections' %>
+              <% end %>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="utype-title mdl-layout-title">
+        <%= link_to root_path do %>
+          <i class="material-icons">keyboard</i> Usertyping
         <% end %>
-      </ul>
-    </nav>
-    <h1><%= link_to 'Usertyping', root_path =%></h1>
-    <hr>
-  </div>
-
-<% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
-
-<%= yield %>
+      </span>
+      <nav class="mdl-navigation">
+        <% if user_signed_in? %>
+          <%= link_to user_path(current_user), :class => 'mdl-navigation__link' do %>
+            <i class="material-icons">account_circle</i> <%= "Signed in as #{current_user.username}" %>
+          <% end %>
+          <%= link_to edit_user_registration_path, :class => 'mdl-navigation__link' do %>
+            <i class="material-icons">settings</i> Settings
+          <% end %>
+          <%= link_to destroy_user_session_path, method: :delete, :class => "mdl-navigation__link" do %>
+            <i class="material-icons">exit_to_app</i> Logout
+          <% end %>
+        <% else %>
+          <%= link_to new_user_registration_path, :class => 'mdl-navigation__link' do %>
+            <i class="material-icons">person_add</i> Sign up
+          <% end %>
+          <%= link_to new_user_session_path, :class => 'mdl-navigation__link' do %>
+            <i class="material-icons">input</i> Login
+          <% end %>
+        <% end %>
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+      <div class='utype-container mdl-grid'>
+        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+        <div class='utype-main mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col'>
+          <% if notice %>
+            <p class="alert alert-success"><%= notice %></p>
+          <% end %>
+          <% if alert %>
+            <p class="alert alert-danger"><%= alert %></p>
+          <% end %>
+          <%= yield %>
+        </div>
+      </div>
+    </main>
 
 </body>
 </html>

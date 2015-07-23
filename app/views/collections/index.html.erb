@@ -1,21 +1,25 @@
-<h1>Listing Collections</h1>
+<h2>Listing Collections</h2>
 
 <%= form_tag collections_path, :method => 'get' do %>
-  <p>
-    <%= text_field_tag :query, params[:query] %>
-    <%= submit_tag 'Search', :name => nil %>
-  </p>
+  <div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <%= text_field_tag :query, params[:query], :class => 'mdl-textfield__input' %>
+      <label for="query" class="mdl-textfield__label">
+        <i class="material-icons">search</i>
+      </label>
+    </div>
+  </div>
 <% end %>
 
 <% if not @collections.present? %>
   Not found
 <% else %>
-  <table>
+  <table class="mdl-data-table mdl-js-data-table">
     <thead>
       <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>User</th>
+        <th class='mdl-data-table__cell--non-numeric'>User</th>
+        <th class='mdl-data-table__cell--non-numeric'>Title</th>
+        <th class='mdl-data-table__cell--non-numeric'>Description</th>
         <th colspan="2"></th>
       </tr>
     </thead>
@@ -23,9 +27,9 @@
     <tbody>
       <% @collections.each do |collection| %>
         <tr>
-          <td><%= link_to collection.title, user_collection_path(collection.user, collection) %></td>
-          <td><%= collection.description %></td>
-          <td><%= link_to collection.user.username, user_path(collection.user) %></td>
+          <td class='mdl-data-table__cell--non-numeric'><%= link_to collection.user.username, user_path(collection.user) %></td>
+          <td class='mdl-data-table__cell--non-numeric'><%= link_to collection.title, user_collection_path(collection.user, collection) %></td>
+          <td class='mdl-data-table__cell--non-numeric'><%= collection.description %></td>
           <% if user_signed_in? and collection.user == current_user %>
             <td><%= link_to 'Edit', edit_user_collection_path(collection.user, collection) %></td>
             <td><%= link_to 'Destroy', user_collection_path(collection.user, collection), method: :delete, data: { confirm: 'Are you sure?' } %></td>

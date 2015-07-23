@@ -1,4 +1,4 @@
-<h1><%= @user.username %> / <%= @collection.title %></h1>
+<h2><%= @user.username %> / <%= @collection.title %></h2>
 
 <p>
   <strong>Description:</strong>
@@ -8,7 +8,7 @@
 <% if not @texts.present? %>
   No texts registered in this collection
 <% else %>
-  <table>
+  <table class="mdl-data-table mdl-js-data-table">
     <thead>
       <tr>
         <th>Title</th>
@@ -38,7 +38,7 @@
 
 
 <% if user_signed_in? and @user == current_user %>
-  <h2>New Text</h2>
+  <h3>New Text</h3>
   <%= render 'texts/form' %>
 
   <%= link_to 'Edit', edit_user_collection_path(@collection.user, @collection) %> |
