@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+
+#utype-header {
+  color: #f8f8f8;
+}
+
+#utype-header a,
+#utype-header input {
+  color: #f8f8f8;
+}
+
+#utype-title a {
+  text-decoration: none;
+}
