@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   resources :users, :only => [:show], :path => 'u' do
     resources :collections, :except => [:index, :new], :path => '/' do
       resources :texts, :except => [:index, :new]
+
+      member do
+        get 'play'
+      end
     end
   end
   resources :collections, :only => [:index]

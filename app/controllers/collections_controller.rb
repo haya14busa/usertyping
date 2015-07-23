@@ -1,7 +1,10 @@
 class CollectionsController < ApplicationController
-  before_action :set_collection, only: [:show, :edit, :update, :destroy]
+  before_action :set_collection, only: [:show, :edit, :update, :destroy, :play]
   before_action :set_user, except: [:index]
   before_action :authenticate_user, only: [:create, :edit, :update, :destroy]
+
+  def play
+  end
 
   # GET /collections
   # GET /collections.json
@@ -16,6 +19,11 @@ class CollectionsController < ApplicationController
     # To create texts
     @text = Text.new
     @text.collection = @collection
+
+    respond_to do |format|
+      format.html
+      format.json {render :json => @collection.as_json(:include => :texts)}
+    end
   end
 
   # GET /collections/1/edit

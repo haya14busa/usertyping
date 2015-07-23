@@ -1,0 +1,46 @@
+<h2> Play! <%= link_to @user.username, user_path(@user) %> / <%= link_to @collection.title, user_collection_path(@user, @collection) %></h2>
+
+<button id='game-start-button' class='mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent'>Start</button>
+
+<div id='game-area' style='display: none;'>
+  <div id='game-problem-text-field'>
+    <p id='game-problem-text'>
+      Here is the text
+    </p>
+  </div>
+
+  <div>
+    <div class='game-field mdl-textfield mdl-js-textfield'>
+      <textarea id='game-user-input' class='mdl-textfield__input' rows=1></textarea>
+      <label for='game-user-input' class='mdl-textfield__label'>Input</label>
+    </div>
+  </div>
+</div>
+
+<div id='game-result-area' style='display: none;'>
+  <p>
+    Game End!
+  </p>
+
+  <table class="mdl-data-table mdl-js-data-table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Body</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @collection.texts.each do |text| %>
+        <tr>
+          <td><%= link_to text.title, user_collection_text_path(@user, @collection, text) %></td>
+          <td><%= text.body %></td>
+          <td><%= text.description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to 'Back', user_collections_path, :class => 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect' %>
+</div>
