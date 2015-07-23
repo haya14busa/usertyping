@@ -3,8 +3,8 @@
 <head>
   <title>Usertyping</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.light_blue-light_green.min.css" />
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -29,7 +29,7 @@
             <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => "mdl-navigation__link" %>
           <% else %>
             <%= link_to "Sign up", new_user_registration_path, :class => 'mdl-navigation__link' %>
-            <%= link_to "Login", new_user_session_path, :class => 'navbar-mdl-navigation__linklink' %>
+            <%= link_to "Login", new_user_session_path, :class => 'mdl-navigation__link' %>
           <% end %>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--align-right">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
@@ -37,7 +37,7 @@
             </label>
             <div class="mdl-textfield__expandable-holder">
               <%= form_tag collections_path, :method => 'get', :class => 'mdl-navigation__link mdl-textfield mdl-js-textfield' do %>
-                <%= text_field_tag :query, params[:query], :class => 'mdl-textfield__input', :id => 'fixed-header-drawer-exp' %>
+                <%= text_field_tag :query, params[:query], :class => 'mdl-textfield__input', :id => 'fixed-header-drawer-exp', :placeholder => 'Search collections' %>
               <% end %>
             </div>
           </div>
@@ -60,15 +60,17 @@
       </nav>
     </div>
     <main class="mdl-layout__content">
-      <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-      <div class='utype-main mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col'>
-        <% if notice %>
-          <p class="alert alert-success"><%= notice %></p>
-        <% end %>
-        <% if alert %>
-          <p class="alert alert-danger"><%= alert %></p>
-        <% end %>
-        <%= yield %>
+      <div class='utype-container mdl-grid'>
+        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+        <div class='utype-main mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col'>
+          <% if notice %>
+            <p class="alert alert-success"><%= notice %></p>
+          <% end %>
+          <% if alert %>
+            <p class="alert alert-danger"><%= alert %></p>
+          <% end %>
+          <%= yield %>
+        </div>
       </div>
     </main>
 

@@ -1,19 +1,19 @@
 <% if @newest_collections.present? %>
-  <h2>Newest newest_collections</h2>
+  <h2>Newest collections</h2>
 
-  <table cellspacing="0">
+  <table cellspacing="0" class="mdl-data-table mdl-js-data-table">
   <tr>
-    <td>User</td>
-    <td>Title</td>
-    <td>Description</td>
-    <td>created at</td>
+    <td class='mdl-data-table__cell--non-numeric'>User</td>
+    <td class='mdl-data-table__cell--non-numeric'>Title</td>
+    <td class='mdl-data-table__cell--non-numeric'>Description</td>
+    <td class='mdl-data-table__cell--non-numeric'>created at</td>
   </tr>
   <% @newest_collections.each do |collection| %>
     <tr>
-      <td><%= link_to collection.user.username, user_path(collection.user) %></td>
-      <td><%= link_to collection.title, user_collection_path(collection.user, collection) %></td>
-      <td><%= collection.description %></td>
-      <td><%= collection.created_at %></td>
+      <td class='mdl-data-table__cell--non-numeric'><%= link_to collection.user.username, user_path(collection.user) %></td>
+      <td class='mdl-data-table__cell--non-numeric'><%= link_to truncate(collection.title, omission: '...', length: 15), user_collection_path(collection.user, collection) %></td>
+      <td class='mdl-data-table__cell--non-numeric'><%= truncate(collection.description, omission: '...', length: 25) %></td>
+      <td class='mdl-data-table__cell--non-numeric'><%= collection.created_at %></td>
     </tr>
   <% end %>
   </table>

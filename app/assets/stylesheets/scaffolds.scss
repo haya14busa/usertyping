@@ -42,9 +42,9 @@ div {
 }
 
 .field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
+  border-left: 1px solid red;
+  margin-left: -5px;
+  padding-left: 5px;
 }
 
 #error_explanation {
