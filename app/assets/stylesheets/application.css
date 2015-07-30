@@ -19,6 +19,7 @@ html, body {
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
+  word-wrap: break-word;
 }
 
 main {
@@ -44,6 +45,7 @@ main {
 .utype-main {
   border-radius: 2px;
   padding: 30px 56px 80px;
+  overflow-x: auto;
 }
 
 a, a:visited {
