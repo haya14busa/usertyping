@@ -33,7 +33,7 @@
         var answerText = document.querySelector('#game-text-answer').textContent;
         var user_input = document.querySelector('#game-user-input');
         user_input.oninput = function() {
-          if (document.querySelector('#game-user-input').value == answerText) {
+          if (equalText(document.querySelector('#game-user-input').value, answerText)) {
             user_input.oninput = undefined;
             document.querySelector('#game-user-input').value = '';
             updateText(i + 1)
@@ -44,12 +44,16 @@
     updateText(0);
   }
 
+  function equalText(a, b) {
+    return a.split(/\r\n|\r|\n/).join('') == b.split(/\r\n|\r|\n/).join('');
+  }
+
 
   function createTextDom(textJson) {
     var textDom = document.createElement('div');
     var title = document.createElement('h3');
     title.textContent = textJson.title;
-    var body = document.createElement('p');
+    var body = document.createElement('pre');
     body.textContent = textJson.body;
     body.setAttribute('id', 'game-text-answer')
     textDom.appendChild(title);

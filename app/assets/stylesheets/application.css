@@ -64,3 +64,8 @@ table {
 .game-field {
   width: 90%;
 }
+
+#game-problem-text pre {
+  font-size: 16px;
+  line-height: 1.5;
+}
