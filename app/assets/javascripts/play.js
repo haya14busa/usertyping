@@ -1,14 +1,10 @@
 (function($) {
 
   window.onload = function(){
-    console.log('play!');
     var start_button = document.querySelector('#game-start-button');
-    // debugger;
     start_button.onclick = function(e) {
-      console.log('clicked');
       start_game(start_button);
     };
-    // debugger;
   }
 
   function start_game(start_button) {
@@ -61,6 +57,7 @@
     return textDom;
   }
 
+  // cb(call back): JSONをfetchしたあとにjsonのデータを引数として実行する関数
   function fetchText(cb) {
     var play_url = location.href;
     var target_url = play_url.slice(0, -5); // remove trailing `/play`
